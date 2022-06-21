@@ -5,8 +5,6 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 from streamlit_lottie import st_lottie_spinner
 import requests
-# import dlib
-# opencv library
 import face_recognition
 from datetime import datetime
 from PIL import Image
@@ -15,13 +13,6 @@ import numpy as np
 import cv2
 import os
 import time
-
-# [theme]
-# primaryColor="#F63366"
-# backgroundColor="#FFFFFF"
-# secondaryBackgroundColor="#F0F2F6"
-# textColor="#262730"
-# font="sans serif"
 
 #lottie hiasan
 def load_lottieurl(url: str):
@@ -125,6 +116,8 @@ if choice == 'PRESENSI':
             FRAME_WINDOW.image(img)
             cv2.waitKey(1)
 
+    # elif stop == True:
+    #     st.stop()
     else:
         pass
 
@@ -136,7 +129,6 @@ elif choice == 'DATA':
         st.write(df)
 
         def convert_df(df):
-            # IMPORTANT: Cache the conversion to prevent computation on every rerun
             return df.to_csv().encode('utf-8')
         my_large_df = pd.read_csv('Attendance.csv')
         csv = convert_df(my_large_df)
@@ -169,11 +161,11 @@ elif choice == 'HOME':
             st.write(
             """
             - Didalam menu presensi anda bisa langsung mengklik "Mulai Presensi" Maka Mesin akan secara otomatis mengambil data wajah peserta didik.
-            - Sebelum melakukan presensi pastian perangkat yang anda gunakan terhubung dengan WEBCAM "CCTV".
-            - Ketika melakukan presensi peserta didik dianjurkan untung menghadap kamera WEBCAM "CCTV" Untuk memaksimalkan akurasi mesin.
+            - Sebelum melakukan presensi pastikan perangkat yang anda gunakan terhubung dengan WEBCAM "CCTV".
+            - Ketika melakukan presensi peserta didik dianjurkan untuk menghadap kamera WEBCAM "CCTV" Untuk memaksimalkan akurasi mesin.
             """)
             st.write('##')
-        lottie_url_attendance = 'https://assets8.lottiefiles.com/packages/lf20_HQ3RPY.json'
+        lottie_url_attendance = 'https://assets7.lottiefiles.com/packages/lf20_wK2ITq.json'
         lottie_attendance = load_lottieurl(lottie_url_attendance)
         # lottie_attendance
         with right_column:
@@ -182,11 +174,10 @@ elif choice == 'HOME':
                 lottie_attendance,
                 reverse=False,
                 loop = True,
-                width=250
+                width=200
             )
             st.write('##')
             st.write('##')
-
         with left_column:
             st.subheader('DATA')
             st.write(
@@ -195,7 +186,7 @@ elif choice == 'HOME':
                 - Pada Menu data anda juga bisa langsung mendowload hasil presensi dengan format CSV ke prangkat anda.
                 """)
             st.write('##')
-        lottie_url_list = 'https://assets2.lottiefiles.com/packages/lf20_pjagkisd.json'
+        lottie_url_list = 'https://assets5.lottiefiles.com/packages/lf20_i3mq3e9v.json'
         lottie_list = load_lottieurl(lottie_url_list)
         with right_column:
             st.write('##')
@@ -203,25 +194,5 @@ elif choice == 'HOME':
                 lottie_list,
                 reverse=False,
                 loop=True,
-                width=250
+                width=300
             )
-
-        # with left_column:
-        #     st.subheader('TENTANG')
-        #     st.write(
-        #         """
-        #         - Pada Menu Tentang terdapat dokumentasi tentang projek absensi wajah otomatis ini.
-        #         - Pada Menu Tentang anda bisa mengakses informasi terkait Kelompok Vilfriend Excalibur
-        #         - Pada Menu Tentang Terdapat Profile dari Creator projek ini
-        #         """)
-        #     st.write('##')
-        # lottie_url_team = 'https://assets1.lottiefiles.com/packages/lf20_VWOntT.json'
-        # lottie_team = load_lottieurl(lottie_url_team)
-        # with right_column:
-        #     # st.write('#')
-        #     st_lottie(
-        #         lottie_team,
-        #         reverse=False,
-        #         loop=True,
-        #         width=250
-        #         )
